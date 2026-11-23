@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEON DODGE — one prompt, one game</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #050510; }
+  body { font-family: "Segoe UI", system-ui, sans-serif; color: #eaf6ff; }
+  #wrap { position: fixed; inset: 0; }
+  canvas { display: block; width: 100%; height: 100%; }
+  #hud {
+    position: absolute; top: 0; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 18px 24px; pointer-events: none; user-select: none;
+  }
+  #hud .score { font-size: 44px; font-weight: 800; letter-spacing: 2px; color: #7df9ff;
+    text-shadow: 0 0 18px rgba(125,249,255,.8); font-variant-numeric: tabular-nums; }
+  #hud .best { font-size: 15px; color: #9db8d6; margin-top: 6px; letter-spacing: 1px; }
+  #hud .title { text-align: right; font-size: 15px; letter-spacing: 3px; color: #ff5da2;
+    font-weight: 700; text-shadow: 0 0 14px rgba(255,93,162,.7); }
+  #hud .title small { display: block; color: #9db8d6; letter-spacing: 1px; font-weight: 400; margin-top: 4px; }
+  #overlay {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    background: rgba(5,5,16,.55); backdrop-filter: blur(2px); cursor: pointer;
+  }
+  #overlay h1 {
+    font-size: 72px; font-weight: 900; letter-spacing: 6px; color: #fff;
+    text-shadow: 0 0 30px #ff5da2, 0 0 80px #7df9ff; margin-bottom: 10px;
+  }
+  #overlay h1 span { color: #7df9ff; }
+  #overlay p { font-size: 20px; color: #cfe6ff; margin: 6px 0; max-width: 640px; line-height: 1.5; }
+  #overlay .key {
+    display: inline-block; margin-top: 18px; padding: 12px 28px; font-size: 20px; font-weight: 700;
+    color: #050510; background: #7df9ff; border-radius: 999px; letter-spacing: 1px;
+    box-shadow: 0 0 26px rgba(125,249,255,.8);
+  }
+  #overlay .tiny { font-size: 14px; color: #8fa8c4; margin-top: 16px; }
+  #overlay.hidden { display: none; }
+  #toast {
+    position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
+    font-size: 14px; letter-spacing: 2px; color: #8fa8c4; pointer-events: none; user-select: none;
+  }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="game"></canvas>
+  <div id="hud">
+    <div><div class="score" id="score">0</div><div class="best" id="best"></div></div>
+    <div class="title">NEON DODGE<small>ONE PROMPT · ONE GAME · BUILT BY AN AI AGENT</small></div>
+  </div>
+  <div id="overlay">
+    <h1>NEON <span>DODGE</span></h1>
+    <p>Hold to climb. Release to dive.<br>Dodge the asteroids. Grab the stars. Don't blink.</p>
+    <div class="key">HOLD SPACE / CLICK / TAP TO FLY</div>
+    <div class="tiny">Built from a single prompt by an AI agent · for a $20 bounty on make.fun</div>
+  </div>
+  <div id="toast">HOLD TO RISE &nbsp;·&nbsp; RELEASE TO FALL &nbsp;·&nbsp; R TO RESTART</div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
